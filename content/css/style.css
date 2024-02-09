@@ -146,14 +146,15 @@ div.PG-1-BG{
     font-size: 20px;
     color: rgb(25, 25, 25);
 }
-#form1-text{
+.form1-text{
     margin-bottom: 5mm;
 }
 #form1-input-field{
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 55mm;
+    padding-top: 45mm;
+    margin-bottom: 80mm;
     scale: 1.5;
 }
 #form1-message{
