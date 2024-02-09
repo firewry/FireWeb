@@ -191,3 +191,45 @@ div.PG-1-BG{
     padding-top: 100mm;
     color: white;
 }
+.project{
+    width: 130mm;
+    height: 90mm;
+    background-color: #00000080;
+    border: 2mm solid #de0f3f;
+    border-radius: 5mm;
+    transition: .2s;
+}
+.project:hover{
+    background-color: #000000b9;
+    transform: scale(1.1);
+}
+#project1{
+    position: absolute;
+    top: 40mm;
+    left: 30mm;
+}
+#project2{
+    position: absolute;
+    top: 40mm;
+    left: 190mm;
+}
+#project3{
+    position: absolute;
+    top: 40mm;
+    left: 350mm;
+}
+#project4{
+    position: absolute;
+    top: 145mm;
+    left: 30mm;
+}
+#project5{
+    position: absolute;
+    top: 145mm;
+    left: 190mm;
+}
+#project6{
+    position: absolute;
+    top: 145mm;
+    left: 350mm;
+}
