@@ -1,416 +1,412 @@
 <html><head><base href="https://portfolio.example.com/">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Projects Portfolio</title>
-<style>
-    :root {
-        --bg-color: #ffffff;
-        --text-color: #333333;
-        --box-bg: #f0f0f0;
-        --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        --skill-bg: #f0f0f0;
-        --skill-text: #333333;
-        --skill-hover-bg: #4CAF50;
-        --skill-hover-text: #ffffff;
-    }
-    
-    body {
-        font-family: Arial, sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        transition: background-color 0.3s, color 0.3s;
-        margin: 0;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .dark-mode {
-        --bg-color: rgba(26, 26, 26, 0.9);
-        --text-color: #ffffff;
-        --box-bg: #2a2a2a;
-        --box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
-        --skill-bg: #2a2a2a;
-        --skill-text: #ffffff;
-        --skill-hover-bg: #4CAF50;
-        --skill-hover-text: #ffffff;
-    }
-    
-    h1, h2 {
-        text-align: center;
-        margin-bottom: 30px;
-        width: 100%;
-    }
-
-    .project-grid h2 {
-        width: 100%;
-        text-align: left;
-        margin-top: 40px;
-        margin-bottom: 20px;
-        font-size: 24px;
-        color: var(--text-color);
-        padding-left: 20px; 
-    }
-    
-    .toggle-container {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-    }
-    
-    #mode-toggle {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 24px;
-        color: var(--text-color);
-    }
-    
-    .project-grid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 80%;
-        max-width: 1200px;
-        position: relative; 
-    }
-    
-    .row {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    
-    .project-box {
-        background-color: var(--box-bg);
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: var(--box-shadow);
-        flex: 1;
-        margin: 0 10px;
-        transition: all 0.5s ease;
-        transform-style: preserve-3d;
-        perspective: 1000px;
-    }
-    
-    .project-box img {
-        width: 100%;
-        height: auto;
-        border-radius: 4px;
-        margin-bottom: 10px;
-    }
-    
-    .big-box {
-        width: 100%;
-    }
-    
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        width: 100%;
-    }
-    
-    .skill-box {
-        background-color: var(--skill-bg);
-        color: var(--skill-text);
-        border-radius: 8px;
-        padding: 15px;
-        text-align: center;
-        box-shadow: var(--box-shadow);
-        transition-property: transform, background-color, color;
-        transition-duration: 0.3s, 0.15s, 0.15s;
-    }
-    
-    .skill-box:hover {
-        transform: translateY(-5px);
-        background-color: var(--skill-hover-bg);
-        color: var(--skill-hover-text);
-        transition-duration: 0.3s, 0.15s, 0.15s;
-    }
-    
-    .skill-box:not(:hover) {
-        transition-duration: 0.3s, 1s, 1s;
-    }
-    
-    .why-me-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        width: 100%;
-        position: relative;
-        z-index: 2;
-    }
-
-    .why-me-box {
-        background-color: var(--skill-bg);
-        color: var(--skill-text);
-        border-radius: 8px;
-        padding: 15px;
-        text-align: center;
-        box-shadow: var(--box-shadow);
-        transition: transform 0.3s;
-        position: relative;  
-        z-index: 2;  
-    }
-
-    .why-me-box:hover {
-        transform: translateY(-5px);
-    }
-
-    .project-box:not(.skill-box):hover {
-        transform: scale(1.02) rotate3d(0, 1, 0, 2deg);
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    }
-    
-    .project-box:not(.skill-box):nth-child(2n):hover {
-        transform: scale(1.02) rotate3d(0, 1, 0, -2deg);
-    }
-    
-    .project-box:not(.skill-box):nth-child(3n):hover {
-        transform: scale(1.02) rotate3d(1, 0, 0, 2deg);
-    }
-    
-    .project-box:not(.skill-box):nth-child(4n):hover {
-        transform: scale(1.02) rotate3d(1, 0, 0, -2deg);
-    }
-
-    .light-dot {
-        position: absolute;
-        width: 500px; 
-        height: 500px; 
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .light-dot-yellow {
-        background: radial-gradient(circle, rgba(255,255,0,0.2) 0%, rgba(255,255,0,0) 70%);
-    }
-
-    .light-dot-blue {
-        background: radial-gradient(circle, rgba(0,0,255,0.2) 0%, rgba(0,0,255,0) 70%);
-    }
-
-    .light-dot-green {
-        background: radial-gradient(circle, rgba(0,255,0,0.2) 0%, rgba(0,255,0,0) 70%);
-    }
-
-    .light-dot-purple {
-        background: radial-gradient(circle, rgba(128,0,128,0.2) 0%, rgba(128,0,128,0) 70%);
-    }
-
-    .light-dot-1 { top: -150px; left: -200px; }
-    .light-dot-2 { top: -50px; right: -200px; }
-    .light-dot-3 { top: 30%; left: -200px; }
-    .light-dot-4 { top: 30%; right: -200px; }
-    .light-dot-5 { top: 60%; left: -200px; }
-    .light-dot-8 { bottom: 20%; right: -200px; }
-    .light-dot-9 { bottom: -125px; right: -125px; left: auto; transform: none; width: 250px; height: 250px; z-index: 1; }
-
-    .project-grid {
-        position: relative;
-        z-index: 1;
-    }
-
-    .project-box, .skills-grid, h1, h2 {
-        position: relative;
-        z-index: 2;
-    }
-
-    .project-link {
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        flex: 1;
-        margin: 0 10px;
-    }
-
-    .project-link:hover {
-        text-decoration: none;
-    }
-
-    .project-link .project-box {
-        width: 100%;
-    }
-
-    .project-box:not(.skill-box):hover {
-        transform: scale(1.02) rotate3d(0, 1, 0, 2deg);
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    .project-box:not(.skill-box):nth-child(2n):hover {
-        transform: scale(1.02) rotate3d(0, 1, 0, -2deg);
-    }
-
-    .project-box:not(.skill-box):nth-child(3n):hover {
-        transform: scale(1.02) rotate3d(1, 0, 0, 2deg);
-    }
-
-    .project-box:not(.skill-box):nth-child(4n):hover {
-        transform: scale(1.02) rotate3d(1, 0, 0, -2deg);
-    }
-</style>
-</head>
-<body class="dark-mode">
-    <div class="toggle-container">
-        <button id="mode-toggle">◐</button>
-    </div>
-    
-    <h1>My Projects</h1>
-    
-    <div class="project-grid">
-        <div class="light-dot light-dot-yellow light-dot-1"></div>
-        <div class="light-dot light-dot-yellow light-dot-2"></div>
-        <div class="light-dot light-dot-blue light-dot-3"></div>
-        <div class="light-dot light-dot-blue light-dot-4"></div>
-        <div class="light-dot light-dot-green light-dot-5"></div>
-        <div class="light-dot light-dot-green light-dot-8"></div>
-        <div class="light-dot light-dot-purple light-dot-9"></div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --box-bg: #f0f0f0;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --skill-bg: #f0f0f0;
+            --skill-text: #333333;
+            --skill-hover-bg: #4CAF50;
+            --skill-hover-text: #ffffff;
+        }
         
-        <h2>Star Projects</h2>
-        <div class="row">
-            <a href="https://portfolio.example.com/projects/project1" class="project-link">
-                <div class="project-box">
-                    <img src="project1.jpg" alt="Screenshot of Project 1, a modern web application with a sleek user interface" width="400" height="300">
-                    <h3>Project 1</h3>
-                    <p>A cutting-edge web application that revolutionizes task management.</p>
-                </div>
-            </a>
-            <a href="https://portfolio.example.com/projects/project2" class="project-link">
-                <div class="project-box">
-                    <img src="project2.jpg" alt="Screenshot of Project 2, a mobile app with vibrant colors and intuitive design" width="400" height="300">
-                    <h3>Project 2</h3>
-                    <p>An innovative mobile app that helps users track their fitness goals.</p>
-                </div>
-            </a>
-        </div>
-
-        <h2>Documents</h2>
-        <div class="row">
-            <a href="https://portfolio.example.com/documents/recommendation" class="project-link">
-                <div class="project-box big-box">
-                    <img src="recommendation.jpg" alt="A formal letter of recommendation with a professional letterhead" width="800" height="400">
-                    <h3>Letter of Recommendation</h3>
-                    <p>A glowing recommendation from industry leader John Doe, CEO of Tech Innovations Inc.</p>
-                </div>
-            </a>
-        </div>
-        <div class="row">
-            <a href="https://portfolio.example.com/documents/cert1" class="project-link">
-                <div class="project-box">
-                    <img src="cert1.jpg" alt="Certificate for Advanced Web Development from a prestigious online learning platform" width="300" height="200">
-                    <h3>Advanced Web Development</h3>
-                    <p>Certification from Codecademy</p>
-                </div>
-            </a>
-            <a href="https://portfolio.example.com/documents/cert2" class="project-link">
-                <div class="project-box">
-                    <img src="cert2.jpg" alt="Certificate for Data Science Specialization from a well-known university" width="300" height="200">
-                    <h3>Data Science Specialization</h3>
-                    <p>Certification from Johns Hopkins University</p>
-                </div>
-            </a>
-            <a href="https://portfolio.example.com/documents/cert3" class="project-link">
-                <div class="project-box">
-                    <img src="cert3.jpg" alt="Certificate for Project Management Professional (PMP) from PMI" width="300" height="200">
-                    <h3>Project Management Professional (PMP)</h3>
-                    <p>Certification from PMI</p>
-                </div>
-            </a>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .dark-mode {
+            --bg-color: rgba(26, 26, 26, 0.9);
+            --text-color: #ffffff;
+            --box-bg: #2a2a2a;
+            --box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+            --skill-bg: #2a2a2a;
+            --skill-text: #ffffff;
+            --skill-hover-bg: #4CAF50;
+            --skill-hover-text: #ffffff;
+        }
+        
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+    
+        .project-grid h2 {
+            width: 100%;
+            text-align: left;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: var(--text-color);
+            padding-left: 20px; 
+        }
+        
+        .toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        
+        #mode-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--text-color);
+        }
+        
+        .project-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 1200px;
+            position: relative; 
+        }
+        
+        .row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .project-box {
+            background-color: var(--box-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            margin: 0 10px;
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            padding-bottom: 12vh;
+        }
+        
+        .project-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .big-box {
+            width: 100%;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .skill-box {
+            background-color: var(--skill-bg);
+            color: var(--skill-text);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition-property: transform, background-color, color;
+            transition-duration: 0.3s, 0.15s, 0.15s;
+        }
+        
+        .skill-box:hover {
+            transform: translateY(-5px);
+            background-color: var(--skill-hover-bg);
+            color: var(--skill-hover-text);
+            transition-duration: 0.3s, 0.15s, 0.15s;
+        }
+        
+        .skill-box:not(:hover) {
+            transition-duration: 0.3s, 1s, 1s;
+        }
+        
+        .why-me-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+    
+        .why-me-box {
+            background-color: var(--skill-bg);
+            color: var(--skill-text);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+            position: relative;  
+            z-index: 2;  
+        }
+    
+        .why-me-box:hover {
+            transform: translateY(-5px);
+        }
+    
+        .project-box:not(.skill-box):hover {
+            transform: scale(1.02) rotate3d(0, 1, 0, 2deg);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-box:not(.skill-box):nth-child(2n):hover {
+            transform: scale(1.02) rotate3d(0, 1, 0, -2deg);
+        }
+        
+        .project-box:not(.skill-box):nth-child(3n):hover {
+            transform: scale(1.02) rotate3d(1, 0, 0, 2deg);
+        }
+        
+        .project-box:not(.skill-box):nth-child(4n):hover {
+            transform: scale(1.02) rotate3d(1, 0, 0, -2deg);
+        }
+    
+        .light-dot {
+            position: absolute;
+            width: 500px; 
+            height: 500px; 
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    
+        .light-dot-yellow {
+            background: radial-gradient(circle, rgba(255,255,0,0.2) 0%, rgba(255,255,0,0) 70%);
+        }
+    
+        .light-dot-blue {
+            background: radial-gradient(circle, rgba(0,0,255,0.2) 0%, rgba(0,0,255,0) 70%);
+        }
+    
+        .light-dot-green {
+            background: radial-gradient(circle, rgba(0,255,0,0.2) 0%, rgba(0,255,0,0) 70%);
+        }
+    
+        .light-dot-purple {
+            background: radial-gradient(circle, rgba(128,0,128,0.2) 0%, rgba(128,0,128,0) 70%);
+        }
+    
+        .light-dot-1 { top: -150px; left: -200px; }
+        .light-dot-2 { top: -50px; right: -200px; }
+        .light-dot-3 { top: 30%; left: -200px; }
+        .light-dot-4 { top: 30%; right: -200px; }
+        .light-dot-5 { top: 60%; left: -200px; }
+        .light-dot-8 { bottom: 20%; right: -200px; }
+        .light-dot-9 { bottom: -125px; right: -125px; left: auto; transform: none; width: 250px; height: 250px; z-index: 1; }
+    
+        .project-grid {
+            position: relative;
+            z-index: 1;
+        }
+    
+        .project-box, .skills-grid, h1, h2 {
+            position: relative;
+            z-index: 2;
+        }
+    
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex: 1;
+            margin: 0 10px;
+        }
+    
+        .project-link:hover {
+            text-decoration: none;
+        }
+    
+        .project-link .project-box {
+            width: 100%;
+        }
+    
+        .project-box:not(.skill-box):hover {
+            transform: scale(1.02) rotate3d(0, 1, 0, 2deg);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+    
+        .project-box:not(.skill-box):nth-child(2n):hover {
+            transform: scale(1.02) rotate3d(0, 1, 0, -2deg);
+        }
+    
+        .project-box:not(.skill-box):nth-child(3n):hover {
+            transform: scale(1.02) rotate3d(1, 0, 0, 2deg);
+        }
+    
+        .project-box:not(.skill-box):nth-child(4n):hover {
+            transform: scale(1.02) rotate3d(1, 0, 0, -2deg);
+        }
+    </style>
+    </head>
+    <body class="dark-mode">
+        <div class="toggle-container">
+            <button id="mode-toggle">◐</button>
         </div>
         
-        <h2>Skills</h2>
-        <div class="row">
-            <div class="skills-grid">
-                <div class="skill-box">HTML5</div>
-                <div class="skill-box">CSS3</div>
-                <div class="skill-box">JavaScript</div>
-                <div class="skill-box">React</div>
-                <div class="skill-box">Node.js</div>
-                <div class="skill-box">Python</div>
-                <div class="skill-box">SQL</div>
-                <div class="skill-box">Git</div>
-                <div class="skill-box">Agile</div>
-                <div class="skill-box">UI/UX Design</div>
-                <div class="skill-box">RESTful APIs</div>
-                <div class="skill-box">AWS</div>
+        <div class="project-grid">
+            <div class="light-dot light-dot-yellow light-dot-1"></div>
+            <div class="light-dot light-dot-yellow light-dot-2"></div>
+            <div class="light-dot light-dot-blue light-dot-3"></div>
+            <div class="light-dot light-dot-blue light-dot-4"></div>
+            <div class="light-dot light-dot-green light-dot-5"></div>
+            <div class="light-dot light-dot-green light-dot-8"></div>
+            <div class="light-dot light-dot-purple light-dot-9"></div>
+            
+            <h1>Star Projects</h1>
+            <div class="row">
+                <a href="https://portfolio.example.com/projects/project1" class="project-link">
+                    <div class="project-box">
+                        <img src="project1.jpg" alt="Screenshot of Project 1, a modern web application with a sleek user interface" width="400" height="300">
+                        <h3>Project 1</h3>
+                        <p>A cutting-edge web application that revolutionizes task management.</p>
+                    </div>
+                </a>
+                <a href="https://portfolio.example.com/projects/project2" class="project-link">
+                    <div class="project-box">
+                        <img src="project2.jpg" alt="Screenshot of Project 2, a mobile app with vibrant colors and intuitive design" width="400" height="300">
+                        <h3>Project 2</h3>
+                        <p>An innovative mobile app that helps users track their fitness goals.</p>
+                    </div>
+                </a>
+            </div>
+            <h1>Documents</h1>
+            <div class="row">
+                <a href="https://portfolio.example.com/documents/recommendation" class="project-link">
+                    <div class="project-box big-box">
+                        <img src="recommendation.jpg" alt="A formal letter of recommendation with a professional letterhead" width="800" height="200">
+                        <h3>Letter of Recommendation</h3>
+                        <p>A glowing recommendation from industry leader John Doe, CEO of Tech Innovations Inc.</p>
+                    </div>
+                </a>
+            </div>
+            <br><br>
+            <div class="row">
+                <a href="https://portfolio.example.com/documents/cert1" class="project-link">
+                    <div class="project-box">
+                        <img src="cert1.jpg" alt="Certificate for Advanced Web Development from a prestigious online learning platform" width="300" height="200">
+                        <h3>Advanced Web Development</h3>
+                        <p>Certification from Codecademy</p>
+                    </div>
+                </a>
+                <a href="https://portfolio.example.com/documents/cert2" class="project-link">
+                    <div class="project-box">
+                        <img src="cert2.jpg" alt="Certificate for Data Science Specialization from a well-known university" width="300" height="200">
+                        <h3>Data Science Specialization</h3>
+                        <p>Certification from Johns Hopkins University</p>
+                    </div>
+                </a>
+                <a href="https://portfolio.example.com/documents/cert3" class="project-link">
+                    <div class="project-box">
+                        <img src="cert3.jpg" alt="Certificate for Project Management Professional (PMP) from PMI" width="300" height="200">
+                        <h3>Project Management Professional (PMP)</h3>
+                        <p>Certification from PMI</p>
+                    </div>
+                </a>
+            </div>
+            <h1>Skills</h1>
+            <div class="row">
+                <div class="skills-grid">
+                    <div class="skill-box">HTML5</div>
+                    <div class="skill-box">CSS3</div>
+                    <div class="skill-box">JavaScript</div>
+                    <div class="skill-box">React</div>
+                    <div class="skill-box">Node.js</div>
+                    <div class="skill-box">Python</div>
+                    <div class="skill-box">SQL</div>
+                    <div class="skill-box">Git</div>
+                    <div class="skill-box">Agile</div>
+                    <div class="skill-box">UI/UX Design</div>
+                    <div class="skill-box">RESTful APIs</div>
+                    <div class="skill-box">AWS</div>
+                </div>
+            </div>
+            <h1>Other Projects</h1>
+            <div class="row">
+                <a href="https://portfolio.example.com/projects/project3" class="project-link">
+                    <div class="project-box">
+                        <img src="project3.jpg" alt="Screenshot of Project 3, a data visualization dashboard with colorful charts" width="460" height="300">
+                        <h3>Project 3</h3>
+                        <p>A comprehensive data visualization dashboard for business analytics.</p>
+                    </div>
+                </a>
+                <a href="https://portfolio.example.com/projects/project4" class="project-link">
+                    <div class="project-box">
+                        <img src="project4.jpg" alt="Screenshot of Project 4, an e-commerce website with a clean, minimalist design" width="460" height="300">
+                        <h3>Project 4</h3>
+                        <p>A fully responsive e-commerce platform with seamless user experience.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="row">
+                <a href="https://portfolio.example.com/projects/project5" class="project-link">
+                    <div class="project-box">
+                        <img src="project5.jpg" alt="Screenshot of Project 5, a social media app with a unique circular interface" width="400" height="300">
+                        <h3>Project 5</h3>
+                        <p>An innovative social media app focused on connecting like-minded professionals.</p>
+                    </div>
+                </a>
+                <a href="https://portfolio.example.com/projects/project6" class="project-link">
+                    <div class="project-box">
+                        <img src="project6.jpg" alt="Screenshot of Project 6, a weather app with dynamic backgrounds based on current conditions" width="400" height="300">
+                        <h3>Project 6</h3>
+                        <p>A sleek weather application with real-time updates and location-based forecasts.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="row">
+                <a href="https://portfolio.example.com/projects/project7" class="project-link">
+                    <div class="project-box">
+                        <img src="project7.jpg" alt="Screenshot of Project 7, a language learning app with gamification elements" width="400" height="300">
+                        <h3>Project 7</h3>
+                        <p>A gamified language learning platform that makes mastering new languages fun and engaging.</p>
+                    </div>
+                </a>
+                <a href="https://portfolio.example.com/projects/project8" class="project-link">
+                    <div class="project-box">
+                        <img src="project8.jpg" alt="Screenshot of Project 8, a project management tool with a kanban board interface" width="400" height="300">
+                        <h3>Project 8</h3>
+                        <p>A robust project management tool designed for agile teams and efficient collaboration.</p>
+                    </div>
+                </a>
+            </div>
+            <h1>Why Me?</h1>
+            <div class="row">
+                <div class="why-me-grid">
+                    <div class="why-me-box">Passionate Developer</div>
+                    <div class="why-me-box">Creative Problem-Solver</div>
+                    <div class="why-me-box">Adaptable to New Technologies</div>
+                    <div class="why-me-box">Collaborative Team Player</div>
+                    <div class="why-me-box">Committed to Continuous Learning</div>
+                    <div class="why-me-box">Delivers High-Quality Solutions</div>
+                </div>
             </div>
         </div>
-        
-        <h2>Other Projects</h2>
-        <div class="row">
-            <a href="https://portfolio.example.com/projects/project3" class="project-link">
-                <div class="project-box">
-                    <img src="project3.jpg" alt="Screenshot of Project 3, a data visualization dashboard with colorful charts" width="400" height="300">
-                    <h3>Project 3</h3>
-                    <p>A comprehensive data visualization dashboard for business analytics.</p>
-                </div>
-            </a>
-            <a href="https://portfolio.example.com/projects/project4" class="project-link">
-                <div class="project-box">
-                    <img src="project4.jpg" alt="Screenshot of Project 4, an e-commerce website with a clean, minimalist design" width="400" height="300">
-                    <h3>Project 4</h3>
-                    <p>A fully responsive e-commerce platform with seamless user experience.</p>
-                </div>
-            </a>
-        </div>
-        <div class="row">
-            <a href="https://portfolio.example.com/projects/project5" class="project-link">
-                <div class="project-box">
-                    <img src="project5.jpg" alt="Screenshot of Project 5, a social media app with a unique circular interface" width="400" height="300">
-                    <h3>Project 5</h3>
-                    <p>An innovative social media app focused on connecting like-minded professionals.</p>
-                </div>
-            </a>
-            <a href="https://portfolio.example.com/projects/project6" class="project-link">
-                <div class="project-box">
-                    <img src="project6.jpg" alt="Screenshot of Project 6, a weather app with dynamic backgrounds based on current conditions" width="400" height="300">
-                    <h3>Project 6</h3>
-                    <p>A sleek weather application with real-time updates and location-based forecasts.</p>
-                </div>
-            </a>
-        </div>
-        <div class="row">
-            <a href="https://portfolio.example.com/projects/project7" class="project-link">
-                <div class="project-box">
-                    <img src="project7.jpg" alt="Screenshot of Project 7, a language learning app with gamification elements" width="400" height="300">
-                    <h3>Project 7</h3>
-                    <p>A gamified language learning platform that makes mastering new languages fun and engaging.</p>
-                </div>
-            </a>
-            <a href="https://portfolio.example.com/projects/project8" class="project-link">
-                <div class="project-box">
-                    <img src="project8.jpg" alt="Screenshot of Project 8, a project management tool with a kanban board interface" width="400" height="300">
-                    <h3>Project 8</h3>
-                    <p>A robust project management tool designed for agile teams and efficient collaboration.</p>
-                </div>
-            </a>
-        </div>
-
-        <h2>Why Me?</h2>
-        <div class="row">
-            <div class="why-me-grid">
-                <div class="why-me-box">Passionate Developer</div>
-                <div class="why-me-box">Creative Problem-Solver</div>
-                <div class="why-me-box">Adaptable to New Technologies</div>
-                <div class="why-me-box">Collaborative Team Player</div>
-                <div class="why-me-box">Committed to Continuous Learning</div>
-                <div class="why-me-box">Delivers High-Quality Solutions</div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const modeToggle = document.getElementById('mode-toggle');
-        const body = document.body;
-
-        modeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            modeToggle.textContent = body.classList.contains('dark-mode') ? '◑' : '◐';
-        });
-    </script>
-</body>
-</html>
+    
+        <script>
+            const modeToggle = document.getElementById('mode-toggle');
+            const body = document.body;
+    
+            modeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                modeToggle.textContent = body.classList.contains('dark-mode') ? '◑' : '◐';
+            });
+        </script>
+    </body>
+    </html>
