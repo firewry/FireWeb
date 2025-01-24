@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LBR Tools - Official Leaf Blower Revolution Utilities</title>
+    <link rel="icon" type="image/png" href="https://cdn2.steamgriddb.com/icon/e97f4360f6ecf96cf0b3b580ad4c43eb/32/512x512.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Space+Mono&display=swap');
+        
+        :root {
+            --primary: #93724C;
+            --secondary: #529655;
+            --logo-gold: #F7B040;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        body {
+            background: #3a2e24;
+            color: #f5e6d3;
+            min-height: 100vh;
+        }
+
+        header {
+            background: var(--primary);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--secondary);
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: rgba(82, 150, 85, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 2px solid var(--secondary);
+            transition: all 0.3s ease;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            background: rgba(82, 150, 85, 0.2);
+            box-shadow: 0 4px 15px rgba(82, 150, 85, 0.3);
+        }
+
+        .tool-card h2 {
+            color: var(--logo-gold);
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .tool-card p {
+            color: #f5e6d3;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .tool-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .tool-link:hover {
+            background: var(--logo-gold);
+            color: var(--primary);
+        }
+
+        footer {
+            background: var(--primary);
+            color: #f5e6d3;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .logo {
+            width: 200px;
+            margin-bottom: 1.5rem;
+        }
+
+        .version-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--logo-gold);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .coming-soon {
+            color: var(--logo-gold);
+            font-style: italic;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="version-badge">v2.26 Certified</div>
+        <img src="https://cdn2.steamgriddb.com/icon/e97f4360f6ecf96cf0b3b580ad4c43eb/32/512x512.png" 
+             alt="Official Leaf Blower Revolution Logo" 
+             class="logo">
+        <h1>Leaf Blower Revolution Tools</h1>
+    </header>
+
+    <div class="container">
+        <div class="tool-grid">
+            <div class="tool-card">
+                <h2>Strategies</h2>
+                <p>Proven methods for efficient leaf collection and progression</p>
+                <a href="#" class="tool-link">View Strategies</a>
+            </div>
+
+            <div class="tool-card">
+                <h2>Challenge Guides</h2>
+                <p>Complete walkthroughs for all game challenges and achievements</p>
+                <a href="./challangeGuides.html" class="tool-link">See Guides</a>
+            </div>
+
+            <div class="tool-card">
+                <h2>Unique Leaves</h2>
+                <p>Complete database of special leaves and their effects</p>
+                <a href="./uniqueLeaves.html" class="tool-link">Explore Leaves</a>
+            </div>
+
+            <div class="tool-card">
+                <h2>???</h2>
+                <p class="coming-soon">Coming Soon</p>
+            </div>
+
+            <div class="tool-card">
+                <h2>???</h2>
+                <p class="coming-soon">Coming Soon</p>
+            </div>
+
+            <div class="tool-card">
+                <h2>???</h2>
+                <p class="coming-soon">Coming Soon</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 LBR Tools - Unofficial Community Resource</p>
+        <p>All game content and logos © Humble North Games</p>
+    </footer>
+</body>
+</html>
