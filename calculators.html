@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculators - Leaf Blower Revolution Tools</title>
+    <link rel="icon" type="image/png" href="https://cdn2.steamgriddb.com/icon/e97f4360f6ecf96cf0b3b580ad4c43eb/32/512x512.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="./index.html"><img src="https://cdn2.steamgriddb.com/icon/e97f4360f6ecf96cf0b3b580ad4c43eb/32/512x512.png" 
+             alt="Official Leaf Blower Revolution Logo" 
+             style="width: 200px;"></a>
+        <h1>Game Calculators</h1>
+    </header>
+
+    <div class="container">
+        <div class="calculator-grid">
+            <!-- Tower Floor Calculator -->
+            <div class="calculator-card">
+                <div class="calc-header" onclick="toggleCalculator(this)">
+                    <div class="calc-title">
+                        <h2>Tower Floor Calculator</h2>
+                        <p>Calculate optimal paths through the Leaf Tower</p>
+                    </div>
+                    <img src="https://leafblowerrevolution.wiki.gg/images/4/46/Tower_Floor.png" 
+                         alt="Leaf Tower" 
+                         class="calc-image">
+                </div>
+                <div class="calc-content">
+                    <!-- Calculator UI will go here -->
+                    <div class="coming-soon">Calculator UI coming soon...</div>
+                </div>
+            </div>
+
+            <!-- Pyramid Calculator -->
+            <div class="calculator-card">
+                <div class="calc-header" onclick="toggleCalculator(this)">
+                    <div class="calc-title">
+                        <h2>Pyramid Calculator</h2>
+                        <p>Optimize your pyramid resource management</p>
+                    </div>
+                    <img src="https://leafblowerrevolution.wiki.gg/images/f/f1/Pyramid.png" 
+                         alt="Pyramid Icon" 
+                         class="calc-image">
+                </div>
+                <div class="calc-content">
+                    <div class="coming-soon">Calculator UI coming soon...</div>
+                </div>
+            </div>
+
+            <!-- Shard Calculator -->
+            <div class="calculator-card">
+                <div class="calc-header" onclick="toggleCalculator(this)">
+                    <div class="calc-title">
+                        <h2>Shard Calculator</h2>
+                        <p>Maximize shard collection efficiency</p>
+                    </div>
+                    <img src="https://leafblowerrevolution.wiki.gg/images/1/18/Shard.png" 
+                         alt="Shard Leaf" 
+                         class="calc-image">
+                </div>
+                <div class="calc-content">
+                    <div class="coming-soon">Calculator UI coming soon...</div>
+                </div>
+            </div>
+
+            <!-- Chests Calculator -->
+            <div class="calculator-card">
+                <div class="calc-header" onclick="toggleCalculator(this)">
+                    <div class="calc-title">
+                        <h2>Chests Calculator</h2>
+                        <p>Optimize chest opening strategies</p>
+                    </div>
+                    <img src="https://leafblowerrevolution.wiki.gg/images/c/cd/Chest_Rare.png" 
+                         alt="Loot Chest" 
+                         class="calc-image">
+                </div>
+                <div class="calc-content">
+                    <div class="calculator-ui">
+                        <div class="input-group">
+                            <label>Mulched Chests Level (0-20):</label>
+                            <input type="number" id="mulchedChests" min="0" max="20" value="0">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Mulched Luck Level (0-50):</label>
+                            <input type="number" id="mulchedLuck" min="0" max="50" value="0">
+                        </div>
+                    
+                        <div class="input-group">
+                            <label>Pyramid Floor (-1 to -100):</label>
+                            <input type="number" id="pyramidFloor" min="-100" max="-1" value="-1">
+                        </div>
+                    
+                        <div class="input-group">
+                            <label>Extra Spawn Chance (0-20%):</label>
+                            <input type="number" id="extraSpawn" min="0" max="20" value="0">
+                        </div>
+                    
+                        <button onclick="calculateChests()">Calculate</button>
+                    
+                        <div class="results">
+                            <h3>Chests Per Hour:</h3>
+                            <div class="chest-result common">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/a/a4/Chest_Common.png" alt="Common Chest">
+                                <span>Common: <span id="commonResult">0</span></span>
+                            </div>
+                            <div class="chest-result uncommon">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/d/da/Chest_Uncommon.png" alt="Uncommon Chest">
+                                <span>Uncommon: <span id="uncommonResult">0</span></span>
+                            </div>
+                            <div class="chest-result rare">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/c/cd/Chest_Rare.png" alt="Rare Chest">
+                                <span>Rare: <span id="rareResult">0</span></span>
+                            </div>
+                            <div class="chest-result epic">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/0/09/Chest_Epic.png" alt="Epic Chest">
+                                <span>Epic: <span id="epicResult">0</span></span>
+                            </div>
+                            <div class="chest-result legendary">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/1/11/Chest_Legendary.png" alt="Legendary Chest">
+                                <span>Legendary: <span id="legendaryResult">0</span></span>
+                            </div>
+                            <div class="chest-result gems">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/a/aa/Gem.png" alt="Gem Icon">
+                                <span>Gems: <span id="gemsResult">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trades Calculator -->
+            <div class="calculator-card">
+                <div class="calc-header" onclick="toggleCalculator(this)">
+                    <div class="calc-title">
+                        <h2>Trades Calculator</h2>
+                        <p>Calculate optimal trade routes and values</p>
+                    </div>
+                    <img src="https://leafblowerrevolution.wiki.gg/images/9/9b/Trader%27s_Suitcase.png" 
+                         alt="Trading Icon" 
+                         class="calc-image">
+                </div>
+                <div class="calc-content">
+                    <div class="coming-soon">Calculator UI coming soon...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 LBR Tools - Unofficial Community Resource</p>
+        <p>All game content and logos © Humble North Games</p>
+    </footer>
+
+    <script>
+        // Toggle calculator expansion
+        function toggleCalculator(element) {
+            const card = element.parentElement;
+            const content = card.querySelector('.calc-content');
+            card.classList.toggle('expanded');
+            content.style.maxHeight = card.classList.contains('expanded') ? 
+                content.scrollHeight + "px" : "0";
+        }
+    </script>
+    <script>
+    function calculateChests() {
+        // Get input values
+        const mulchedChests = parseInt(document.getElementById('mulchedChests').value) || 0;
+        const mulchedLuck = parseInt(document.getElementById('mulchedLuck').value) || 0;
+        const extraSpawn = parseInt(document.getElementById('extraSpawn').value) || 0;
+        const pyramidFloor = parseInt(document.getElementById('pyramidFloor').value) || 0;
+        
+        // Calculate spawn chance
+        const baseSpawn = 5 + (mulchedChests * 0.5) + extraSpawn;
+        const spawnChance = Math.round(baseSpawn, 22.4) / 100;
+    
+        // Calculate chest probabilities
+        const ml = mulchedLuck;
+        const denominator = Math.pow(ml + 1, 1.5);
+        
+        // RNG thresholds
+        const legendaryThreshold = 0.1 * denominator;
+        const epicThreshold = 1 * denominator;
+        const rareThreshold = 10 * denominator;
+        const uncommonThreshold = 33 * denominator;
+    
+        // Calculate probabilities
+        const pLegendary = Math.round(legendaryThreshold, 100) / 100;
+        const pEpic = (Math.round(epicThreshold, 100) - legendaryThreshold) / 100;
+        const pRare = (Math.round(rareThreshold, 100) - epicThreshold) / 100;
+        const pUncommon = (Math.round(uncommonThreshold, 100) - rareThreshold) / 100;
+        const pCommon = (100 - Math.round(uncommonThreshold, 100)) / 100;
+    
+        // Calculate hourly rates (assuming 60 checks per hour)
+        const checksPerHour = 150;
+        const totalChests = spawnChance * checksPerHour;
+        
+        // Distribute chest types
+        let common = Math.round(totalChests * pCommon);
+        let uncommon = Math.round(totalChests * pUncommon);
+        let rare = Math.round(totalChests * pRare);
+        let epic = Math.round(totalChests * pEpic);
+        let legendary = Math.round(totalChests * pLegendary);
+
+        //Remove chests if level too high
+        if (ml >= 5){
+            common = 0
+            uncommon = 0
+        }
+        if (ml >= 25) {
+            rare = 0
+        }
+        if (pyramidFloor > -5){
+            rare = 0
+            epic = 0
+            legendary = 0
+        }
+        if (pyramidFloor > -10){
+            epic = 0
+            legendary = 0
+        }
+        if (pyramidFloor > -15){
+            legendary = 0
+        }
+    
+        // Calculate gems (using values from rewards table)
+        const gems = (common * 1) + (uncommon * 2) + (rare * 3) + (epic * 5) + (legendary * 10);
+    
+        // Update UI
+        document.getElementById('commonResult').textContent = ~~common.toFixed(1);
+        document.getElementById('uncommonResult').textContent = ~~uncommon.toFixed(1);
+        document.getElementById('rareResult').textContent = ~~rare.toFixed(1);
+        document.getElementById('epicResult').textContent = ~~epic.toFixed(1);
+        document.getElementById('legendaryResult').textContent = ~~legendary.toFixed(1);
+        document.getElementById('gemsResult').textContent = ~~gems.toFixed(1);
+    }
+    </script>
+</body>
+</html>
