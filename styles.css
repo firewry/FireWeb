@@ -440,22 +440,22 @@ footer {
     background-color: rgba(255, 0, 0, 0.304);
     border: 5px solid red;
     padding: 20px;
-    margin: 20px auto; /* Centers the box horizontally */
+    margin: 20px auto;
     width: fit-content;
     max-width: 600px;
-    text-align: center; /* Align text to the left */
+    text-align: center;
 }
 
 .wip-header {
     display: flex;
-    align-items: center; /* Vertically center the icon and text */
+    align-items: center;
     justify-content: center;
-    gap: 5px; /* Space between icon and text */
+    gap: 5px;
 }
 
 .wip-image {
-    width: 40px; /* Adjust icon size */
-    height: 40px; /* Keep it square */
+    width: 40px;
+    height: 40px;
 }
 
 .calculator-ui {
