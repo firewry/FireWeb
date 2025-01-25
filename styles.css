@@ -436,6 +436,28 @@ footer {
     }
 }
 
+.wip-warning {
+    background-color: rgba(255, 0, 0, 0.304);
+    border: 5px solid red;
+    padding: 20px;
+    margin: 20px auto; /* Centers the box horizontally */
+    width: fit-content;
+    max-width: 600px;
+    text-align: center; /* Align text to the left */
+}
+
+.wip-header {
+    display: flex;
+    align-items: center; /* Vertically center the icon and text */
+    justify-content: center;
+    gap: 5px; /* Space between icon and text */
+}
+
+.wip-image {
+    width: 40px; /* Adjust icon size */
+    height: 40px; /* Keep it square */
+}
+
 .calculator-ui {
     display: grid;
     gap: 1rem;

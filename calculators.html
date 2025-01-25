@@ -9,6 +9,14 @@
 </head>
 <body>
     <header>
+        <a href="https://discord.gg/DGzEKEPEJv" class="discord-badge" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z"/>
+            </svg>
+            Join Discord
+        </a>
+
+        <div class="version-badge">v2.26 Certified</div>
         <a href="./index.html"><img src="https://cdn2.steamgriddb.com/icon/e97f4360f6ecf96cf0b3b580ad4c43eb/32/512x512.png" 
              alt="Official Leaf Blower Revolution Logo" 
              style="width: 200px;"></a>
@@ -17,20 +25,43 @@
 
     <div class="container">
         <div class="calculator-grid">
-            <!-- Tower Floor Calculator -->
+            <!-- Orb of BLC Calculator -->
             <div class="calculator-card">
                 <div class="calc-header" onclick="toggleCalculator(this)">
                     <div class="calc-title">
-                        <h2>Tower Floor Calculator</h2>
-                        <p>Calculate optimal paths through the Leaf Tower</p>
+                        <h2>Orb of BLC Calculator</h2>
+                        <p>Calculate how many 72hr timeskips you need to use to get enough blc</p>
                     </div>
-                    <img src="https://leafblowerrevolution.wiki.gg/images/4/46/Tower_Floor.png" 
-                         alt="Leaf Tower" 
+                    <img src="https://leafblowerrevolution.wiki.gg/images/7/7b/Orb_Of_BLC.png" 
+                         alt="Orb ob BLC" 
                          class="calc-image">
                 </div>
                 <div class="calc-content">
-                    <!-- Calculator UI will go here -->
-                    <div class="coming-soon">Calculator UI coming soon...</div>
+                    <div class="calculator-ui">
+                        <div class="input-group">
+                            <label>Orbs Per Hour:</label>
+                            <input type="number" id="orbsPerHour" min="0" max="50" value="0">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Trading Education (0/50):</label>
+                            <input type="number" id="tradingEducation" min="0" max="50" value="0">
+                        </div>
+
+                        <button onclick="calculateOrbs()">Calculate</button>
+                    
+                        <div class="results">
+                            <h3>Results:</h3>
+                            <div class="chest-result gems">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/7/7b/Orb_Of_BLC.png" alt="Common Chest">
+                                <span>Orbs Needed: <span id="orbsNeeded">0</span></span>
+                            </div>
+                            <div class="chest-result uncommon">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/3/35/Clock.png" alt="Uncommon Chest">
+                                <span>72hr Timeskips: <span id="timeskipsNeeded">0</span></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -71,7 +102,7 @@
                 <div class="calc-header" onclick="toggleCalculator(this)">
                     <div class="calc-title">
                         <h2>Chests Calculator</h2>
-                        <p>Optimize chest opening strategies</p>
+                        <p>Calculate how many chests and gems you will get every hour</p>
                     </div>
                     <img src="https://leafblowerrevolution.wiki.gg/images/c/cd/Chest_Rare.png" 
                          alt="Loot Chest" 
@@ -87,11 +118,6 @@
                         <div class="input-group">
                             <label>Mulched Luck Level (0-50):</label>
                             <input type="number" id="mulchedLuck" min="0" max="50" value="0">
-                        </div>
-                    
-                        <div class="input-group">
-                            <label>Pyramid Floor (-1 to -100):</label>
-                            <input type="number" id="pyramidFloor" min="-100" max="-1" value="-1">
                         </div>
                     
                         <div class="input-group">
@@ -171,72 +197,89 @@
         const mulchedChests = parseInt(document.getElementById('mulchedChests').value) || 0;
         const mulchedLuck = parseInt(document.getElementById('mulchedLuck').value) || 0;
         const extraSpawn = parseInt(document.getElementById('extraSpawn').value) || 0;
-        const pyramidFloor = parseInt(document.getElementById('pyramidFloor').value) || 0;
         
         // Calculate spawn chance
         const baseSpawn = 5 + (mulchedChests * 0.5) + extraSpawn;
-        const spawnChance = Math.round(baseSpawn, 22.4) / 100;
+        const spawnChance = Math.round(baseSpawn) / 100;
     
-        // Calculate chest probabilities
-        const ml = mulchedLuck;
-        const denominator = Math.pow(ml + 1, 1.5);
-        
-        // RNG thresholds
-        const legendaryThreshold = 0.1 * denominator;
-        const epicThreshold = 1 * denominator;
-        const rareThreshold = 10 * denominator;
-        const uncommonThreshold = 33 * denominator;
-    
-        // Calculate probabilities
-        const pLegendary = Math.round(legendaryThreshold, 100) / 100;
-        const pEpic = (Math.round(epicThreshold, 100) - legendaryThreshold) / 100;
-        const pRare = (Math.round(rareThreshold, 100) - epicThreshold) / 100;
-        const pUncommon = (Math.round(uncommonThreshold, 100) - rareThreshold) / 100;
-        const pCommon = (100 - Math.round(uncommonThreshold, 100)) / 100;
-    
-        // Calculate hourly rates (assuming 60 checks per hour)
+        // Calculate hourly rates
         const checksPerHour = 150;
-        const totalChests = spawnChance * checksPerHour;
+        const totalChests = Math.round(spawnChance * checksPerHour);
         
-        // Distribute chest types
-        let common = Math.round(totalChests * pCommon);
-        let uncommon = Math.round(totalChests * pUncommon);
-        let rare = Math.round(totalChests * pRare);
-        let epic = Math.round(totalChests * pEpic);
-        let legendary = Math.round(totalChests * pLegendary);
-
-        //Remove chests if level too high
-        if (ml >= 5){
-            common = 0
-            uncommon = 0
-        }
-        if (ml >= 25) {
-            rare = 0
-        }
-        if (pyramidFloor > -5){
-            rare = 0
-            epic = 0
-            legendary = 0
-        }
-        if (pyramidFloor > -10){
-            epic = 0
-            legendary = 0
-        }
-        if (pyramidFloor > -15){
-            legendary = 0
+        // Initialize chest counters
+        let common = 0, uncommon = 0, rare = 0, epic = 0, legendary = 0;
+    
+        // Calculate chest distribution
+        for (let i = 0; i < totalChests; i++) {
+            const random = Math.random() * 100; // 0-100
+            const maxRarity = random / Math.pow(1 + mulchedLuck, 1.5);
+            
+            // Check thresholds from rarest to most common
+            if (maxRarity <= .1) {
+                legendary++;
+            } else if (maxRarity <= 1) {
+                epic++;
+            } else if (maxRarity <= 10) {
+                rare++;
+            } else if (maxRarity <= 33.33) {
+                uncommon++;
+            } else {
+                common++;
+            }
         }
     
-        // Calculate gems (using values from rewards table)
-        const gems = (common * 1) + (uncommon * 2) + (rare * 3) + (epic * 5) + (legendary * 10);
-    
+        // Calculate gems
+        const gems = (common * .4) + (uncommon * .8) + (rare * 1.2) + (epic * 2) + (legendary * 4);
+        
         // Update UI
-        document.getElementById('commonResult').textContent = ~~common.toFixed(1);
-        document.getElementById('uncommonResult').textContent = ~~uncommon.toFixed(1);
-        document.getElementById('rareResult').textContent = ~~rare.toFixed(1);
-        document.getElementById('epicResult').textContent = ~~epic.toFixed(1);
-        document.getElementById('legendaryResult').textContent = ~~legendary.toFixed(1);
-        document.getElementById('gemsResult').textContent = ~~gems.toFixed(1);
+        document.getElementById('commonResult').textContent = Math.round(common);
+        document.getElementById('uncommonResult').textContent = Math.round(uncommon);
+        document.getElementById('rareResult').textContent = Math.round(rare);
+        document.getElementById('epicResult').textContent = Math.round(epic);
+        document.getElementById('legendaryResult').textContent = Math.round(legendary);
+        document.getElementById('gemsResult').textContent = Math.round(gems);
     }
+    </script>
+    <script>
+        function calculateOrbs() {
+            const orbsPerHour = parseFloat(document.getElementById('orbsPerHour').value) || 0;
+            const currentLevel = parseInt(document.getElementById('tradingEducation').value) || 0;
+
+            // Calculate total BLC cost for all remaining levels
+            let totalCost = 0;
+            for(let n = currentLevel + 1; n <= 50; n++) {
+                totalCost += 20000000 * Math.pow(24, n); // Cost for each level
+            }
+
+            // Calculate required orbs (assuming current BLC = 1)
+            let orbsNeeded = 0;
+            if (totalCost > 0) {
+                // Using formula: BLC * (1.05^orbs - 1) = totalCost
+                // Solved for orbs: orbs = log1.05((totalCost/BLC) + 1)
+                let initialBLC = 3 * (20000000 * Math.pow(24, currentLevel));
+                if (currentLevel <= 2){
+                    initialBLC = 200000000000
+                }
+                orbsNeeded = Math.log((totalCost/initialBLC) + 1) / Math.log(1.05);
+            }
+
+            // Calculate timeskips needed
+            const hoursNeeded = orbsNeeded / orbsPerHour;
+            const timeskipsNeeded = Math.ceil(hoursNeeded / 72);
+
+            // Display results
+            document.getElementById('orbsNeeded').textContent = Math.ceil(orbsNeeded);
+            document.getElementById('timeskipsNeeded').textContent = timeskipsNeeded || 0;
+        }
+
+        // Add input validation
+        document.getElementById('orbsPerHour').addEventListener('input', function(e) {
+            this.value = Math.min(50, Math.max(0, parseInt(this.value) || 0));
+        });
+
+        document.getElementById('tradingEducation').addEventListener('input', function(e) {
+            this.value = Math.min(50, Math.max(0, parseInt(this.value) || 0));
+        });
     </script>
 </body>
 </html>
