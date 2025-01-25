@@ -205,7 +205,7 @@
         const mulchedChests = parseInt(document.getElementById('mulchedChests').value) || 0;
         const mulchedLuck = parseInt(document.getElementById('mulchedLuck').value) || 0;
         const extraSpawn = parseInt(document.getElementById('extraSpawn').value) || 0;
-        
+
         // Calculate spawn chance
         const baseSpawn = 5 + (mulchedChests * 0.5) + extraSpawn;
         const spawnChance = Math.round(baseSpawn) / 100;
@@ -247,6 +247,18 @@
         document.getElementById('legendaryResult').textContent = Math.round(legendary);
         document.getElementById('gemsResult').textContent = Math.round(gems);
     }
+
+    document.getElementById('mulchedChests').addEventListener('input', function(e) {
+        this.value = Math.min(20, Math.max(0, parseInt(this.value) || 0));
+    });
+
+    document.getElementById('mulchedLuck').addEventListener('input', function(e) {
+        this.value = Math.min(50, Math.max(0, parseInt(this.value) || 0));
+    });
+
+    document.getElementById('extraSpawn').addEventListener('input', function(e) {
+        this.value = Math.min(20, Math.max(0, parseInt(this.value) || 0));
+    });
     </script>
     <script>
         function calculateOrbs() {
