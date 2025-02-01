@@ -16,6 +16,11 @@
             Join Discord
         </a>
 
+        <a data-tooltip="Made by _creabit and ziemia" href="https://lbr-witch.alessrodrgz.dev/" class="witch-badge" target="_blank" style="top: 70px;">
+            <img src="https://leafblowerrevolution.wiki.gg/images/e/e6/Witch.png" alt="LBR Witch" style="width: 18px; height: 18px;">
+            Witch Calculator
+        </a>
+
         <div class="version-badge">v2.26 Certified</div>
         <a href="./index.html"><img src="https://cdn2.steamgriddb.com/icon/e97f4360f6ecf96cf0b3b580ad4c43eb/32/512x512.png" 
              alt="Official Leaf Blower Revolution Logo" 
@@ -29,6 +34,7 @@
             <h2>WIP Page</h2>
         </div>
         <h3>This page is still being developed and you may<br>see placeholder text, inaccurate data, or broken features.</h3>
+        <h3>POSTED CALCULATORS <u>SHOULD</u> BE ACCURATE</h3>
     </div>
 
     <div class="container">
@@ -70,38 +76,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Pyramid Calculator -->
-            <div class="calculator-card">
-                <div class="calc-header" onclick="toggleCalculator(this)">
-                    <div class="calc-title">
-                        <h2>Pyramid Calculator</h2>
-                        <p>Optimize your pyramid resource management</p>
-                    </div>
-                    <img src="https://leafblowerrevolution.wiki.gg/images/f/f1/Pyramid.png" 
-                         alt="Pyramid Icon" 
-                         class="calc-image">
-                </div>
-                <div class="calc-content">
-                    <div class="coming-soon">Calculator UI coming soon...</div>
-                </div>
-            </div>
-
-            <!-- Shard Calculator -->
-            <div class="calculator-card">
-                <div class="calc-header" onclick="toggleCalculator(this)">
-                    <div class="calc-title">
-                        <h2>Shard Calculator</h2>
-                        <p>Maximize shard collection efficiency</p>
-                    </div>
-                    <img src="https://leafblowerrevolution.wiki.gg/images/1/18/Shard.png" 
-                         alt="Shard Leaf" 
-                         class="calc-image">
-                </div>
-                <div class="calc-content">
-                    <div class="coming-soon">Calculator UI coming soon...</div>
                 </div>
             </div>
 
@@ -170,12 +144,95 @@
             <div class="calculator-card">
                 <div class="calc-header" onclick="toggleCalculator(this)">
                     <div class="calc-title">
-                        <h2>Trades Calculator</h2>
-                        <p>Calculate optimal trade routes and values</p>
+                        <h2>Bearo Calculator</h2>
+                        <p>Calculate the amount of gems and beer you will get every hour from Bearo</p>
                     </div>
-                    <img src="https://leafblowerrevolution.wiki.gg/images/9/9b/Trader%27s_Suitcase.png" 
-                         alt="Trading Icon" 
+                    <img src="https://leafblowerrevolution.wiki.gg/images/6/6a/Bearo.png" 
+                         alt="Bearo Pet" 
                          class="calc-image">
+                </div>
+                <div class="calc-content">
+                    <div class="calculator-ui">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label>Max Trade Level</label>
+                                <input type="number" id="maxTrade" min="0" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label>Min Trade Level</label>
+                                <input type="number" id="minTrade" min="0" value="0">
+                            </div>
+                        </div>
+                        
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label>Active Trades</label>
+                                <input type="number" id="tradeAmount" min="0" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label>Trade Time (sec)</label>
+                                <input type="number" id="tradeTime" min="1" value="120">
+                            </div>
+                        </div>
+            
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label>Affordable (%)</label>
+                                <input type="number" id="affordable" min="0" max="100" value="100">
+                            </div>
+                            <div class="input-group">
+                                <label>Global Multiplier (%)</label>
+                                <input type="number" id="multiplier" min="0" value="100">
+                            </div>
+                        </div>
+            
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="boostCheck">
+                            <label for="boostCheck">Boosting Trades?</label>
+                        </div>
+            
+                        <button onclick="calculateTradeEfficiency()">Calculate</button>
+            
+                        <div class="results trade-results">
+                            <div class="chest-result gems">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/a/aa/Gem.png" alt="Gems">
+                                <span>Gems/Hour: <span id="tradeGems">0</span></span>
+                            </div>
+                            <div class="chest-result uncommon">
+                                <img src="https://leafblowerrevolution.wiki.gg/images/b/b3/Beer.png" alt="Beer">
+                                <span>Beer/Hour - NOT ACCURATE YET: <span id="tradeBeer">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ??? Calculator -->
+            <div class="calculator-card">
+                <div class="calc-header" onclick="toggleCalculator(this)">
+                    <div class="calc-title">
+                        <h2>??? Calculator</h2>
+                        <p>If you have any ideas for a feature, message me on discord, username: firewry</p>
+                    </div>
+                    <img src="LINK" 
+                            alt="???" 
+                            class="calc-image">
+                </div>
+                <div class="calc-content">
+                    <div class="coming-soon">Calculator UI coming soon...</div>
+                </div>
+            </div>
+
+            <!-- ??? Calculator -->
+            <div class="calculator-card">
+                <div class="calc-header" onclick="toggleCalculator(this)">
+                    <div class="calc-title">
+                        <h2>??? Calculator</h2>
+                        <p>If you have any ideas for a feature, message me on discord, username: firewry</p>
+                    </div>
+                    <img src="LINK" 
+                            alt="???" 
+                            class="calc-image">
                 </div>
                 <div class="calc-content">
                     <div class="coming-soon">Calculator UI coming soon...</div>
@@ -200,65 +257,65 @@
         }
     </script>
     <script>
-    function calculateChests() {
-        // Get input values
-        const mulchedChests = parseInt(document.getElementById('mulchedChests').value) || 0;
-        const mulchedLuck = parseInt(document.getElementById('mulchedLuck').value) || 0;
-        const extraSpawn = parseInt(document.getElementById('extraSpawn').value) || 0;
+        function calculateChests() {
+            // Get input values
+            const mulchedChests = parseInt(document.getElementById('mulchedChests').value) || 0;
+            const mulchedLuck = parseInt(document.getElementById('mulchedLuck').value) || 0;
+            const extraSpawn = parseInt(document.getElementById('extraSpawn').value) || 0;
 
-        // Calculate spawn chance
-        const baseSpawn = 5 + (mulchedChests * 0.5) + extraSpawn;
-        const spawnChance = Math.round(baseSpawn) / 100;
-    
-        // Calculate hourly rates
-        const checksPerHour = 150;
-        const totalChests = Math.round(spawnChance * checksPerHour);
+            // Calculate spawn chance
+            const baseSpawn = 5 + (mulchedChests * 0.5) + extraSpawn;
+            const spawnChance = Math.round(baseSpawn) / 100;
         
-        // Initialize chest counters
-        let common = 0, uncommon = 0, rare = 0, epic = 0, legendary = 0;
-    
-        // Calculate chest distribution
-        for (let i = 0; i < totalChests; i++) {
-            const random = Math.random() * 100; // 0-100
-            const maxRarity = random / Math.pow(1 + mulchedLuck, 1.5);
+            // Calculate hourly rates
+            const checksPerHour = 150;
+            const totalChests = Math.round(spawnChance * checksPerHour);
             
-            // Check thresholds from rarest to most common
-            if (maxRarity <= .1) {
-                legendary++;
-            } else if (maxRarity <= 1) {
-                epic++;
-            } else if (maxRarity <= 10) {
-                rare++;
-            } else if (maxRarity <= 33.33) {
-                uncommon++;
-            } else {
-                common++;
-            }
-        }
-    
-        // Calculate gems
-        const gems = (common * .4) + (uncommon * .8) + (rare * 1.2) + (epic * 2) + (legendary * 4);
+            // Initialize chest counters
+            let common = 0, uncommon = 0, rare = 0, epic = 0, legendary = 0;
         
-        // Update UI
-        document.getElementById('commonResult').textContent = Math.round(common);
-        document.getElementById('uncommonResult').textContent = Math.round(uncommon);
-        document.getElementById('rareResult').textContent = Math.round(rare);
-        document.getElementById('epicResult').textContent = Math.round(epic);
-        document.getElementById('legendaryResult').textContent = Math.round(legendary);
-        document.getElementById('gemsResult').textContent = Math.round(gems);
-    }
+            // Calculate chest distribution
+            for (let i = 0; i < totalChests; i++) {
+                const random = Math.random() * 100; // 0-100
+                const maxRarity = random / Math.pow(1 + mulchedLuck, 1.5);
+                
+                // Check thresholds from rarest to most common
+                if (maxRarity <= .1) {
+                    legendary++;
+                } else if (maxRarity <= 1) {
+                    epic++;
+                } else if (maxRarity <= 10) {
+                    rare++;
+                } else if (maxRarity <= 33.33) {
+                    uncommon++;
+                } else {
+                    common++;
+                }
+            }
+        
+            // Calculate gems
+            const gems = (common * .2) + (uncommon * .4) + (rare * .9) + (epic * 2.8) + (legendary * 7.5);
+            
+            // Update UI
+            document.getElementById('commonResult').textContent = Math.round(common);
+            document.getElementById('uncommonResult').textContent = Math.round(uncommon);
+            document.getElementById('rareResult').textContent = Math.round(rare);
+            document.getElementById('epicResult').textContent = Math.round(epic);
+            document.getElementById('legendaryResult').textContent = Math.round(legendary);
+            document.getElementById('gemsResult').textContent = Math.round(gems);
+        }
 
-    document.getElementById('mulchedChests').addEventListener('input', function(e) {
-        this.value = Math.min(20, Math.max(0, parseInt(this.value) || 0));
-    });
+        document.getElementById('mulchedChests').addEventListener('input', function(e) {
+            this.value = Math.min(20, Math.max(0, parseInt(this.value) || 0));
+        });
 
-    document.getElementById('mulchedLuck').addEventListener('input', function(e) {
-        this.value = Math.min(50, Math.max(0, parseInt(this.value) || 0));
-    });
+        document.getElementById('mulchedLuck').addEventListener('input', function(e) {
+            this.value = Math.min(50, Math.max(0, parseInt(this.value) || 0));
+        });
 
-    document.getElementById('extraSpawn').addEventListener('input', function(e) {
-        this.value = Math.min(20, Math.max(0, parseInt(this.value) || 0));
-    });
+        document.getElementById('extraSpawn').addEventListener('input', function(e) {
+            this.value = Math.min(20, Math.max(0, parseInt(this.value) || 0));
+        });
     </script>
     <script>
         function calculateOrbs() {
@@ -299,6 +356,59 @@
 
         document.getElementById('tradingEducation').addEventListener('input', function(e) {
             this.value = Math.min(50, Math.max(0, parseInt(this.value) || 0));
+        });
+    </script>
+    <script>
+        function calculateTradeEfficiency() {
+            // Input values
+            const max = Math.max(parseFloat(document.getElementById('maxTrade').value) || 0, 
+                                parseFloat(document.getElementById('minTrade').value) || 0);
+            const min = Math.min(parseFloat(document.getElementById('maxTrade').value) || 0, 
+                                parseFloat(document.getElementById('minTrade').value) || 0);
+            const trades = parseFloat(document.getElementById('tradeAmount').value) || 0;
+            const time = parseFloat(document.getElementById('tradeTime').value) || 120;
+            const percent = parseFloat(document.getElementById('affordable').value) || 100;
+            const multiplier = parseFloat(document.getElementById('multiplier').value) || 100;
+            const boosting = document.getElementById('boostCheck').checked;
+
+            // Calculations
+            const adjTime = time + 60
+
+            const hourlyTrades = (3600 / adjTime) * trades * (percent/100);
+            const gemTrades = Math.floor(hourlyTrades * 0.06);
+            const beerTrades = Math.floor(hourlyTrades * 0.072);
+
+            // Gem calculation
+            let totalGems = 0;
+            for(let i = 0; i < gemTrades; i++) {
+                const level = boosting ? max : Math.random() * (max - min) + min;
+                totalGems += (Math.random() * (level/5 - level/10) + level/10);
+            }
+
+            // Beer calculation
+            let totalBeer = 0;
+            for(let i = 0; i < beerTrades; i++) {
+                const level = boosting ? max : Math.random() * (max - min) + min;
+                let beerMulti = 1;
+                if(level >= 50) beerMulti = 3;
+                else if(level >= 33) beerMulti = 2;
+                totalBeer += (beerMulti * multiplier) / 100;
+            }
+
+            // Update UI
+            document.getElementById('tradeGems').textContent = totalGems.toFixed(0);
+            document.getElementById('tradeBeer').textContent = totalBeer.toFixed(0);
+        }
+
+        // Input validation
+        document.querySelectorAll('#maxTrade, #minTrade, #tradeAmount, #tradeTime, #affordable, #multiplier')
+        .forEach(input => {
+            input.addEventListener('input', function() {
+                const maxVal = this.id === 'affordable' ? 100 : Infinity;
+                this.value = Math.max(this.min || 0, 
+                                    Math.min(maxVal, 
+                                    parseFloat(this.value) || 0));
+            });
         });
     </script>
 </body>

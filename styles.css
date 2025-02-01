@@ -121,6 +121,44 @@ header {
     gap: 0.5rem;
 }
 
+.witch-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #740bc9;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.witch-badge::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease, top 0.3s ease;
+    pointer-events: none;
+}
+
+.witch-badge:hover::before {
+    opacity: 1;
+    top: -40px;
+}
+
 .discord-badge:hover {
     background: #4752C4;
     transform: scale(1.05);
@@ -509,6 +547,44 @@ button:hover {
 .chest-result img {
     width: 40px;
     height: 40px;
+}
+
+.trade-calculator {
+    background: rgba(82, 150, 85, 0.1);
+    border: 2px solid var(--secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.trade-results .chest-result {
+    margin: 0.8rem 0;
+    padding: 0.8rem;
+    border-radius: 8px;
+}
+
+.trade-results .chest-result img {
+    width: 35px;
+    height: 35px;
 }
 
 .common { background: rgba(255,255,255,0.1) }
